@@ -3,8 +3,6 @@ import api from "../../api";
 export async function generateStaticParams() {
   const res = await api.call("test-params");
   const res1 = await api.call("test-page?slug=XX");
-  console.log("res", res);
-  console.log("res1", res1);
 
   return [{ slug: "test1" }, { slug: "test2" }];
 }

@@ -2,8 +2,10 @@ import { unstable_cache } from "next/cache";
 import { cache } from "react";
 
 const getData = async (page: string) => {
-  console.log("api call with page: ", page);
-  const res = await fetch(`http://localhost:3001/${page}`, {
+  console.log(`
+   === api call with page: ${page} ===
+   `);
+  const res = await fetch(`http://localhost:3000/${page}`, {
     cache: "no-store",
   });
 
