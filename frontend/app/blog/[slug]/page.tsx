@@ -1,17 +1,16 @@
-import api from "../../api";
+import api from '../../api';
 
 export async function generateStaticParams() {
-  const res = await api.call("test-params");
-  const res1 = await api.call("test-page?slug=XX");
+  await api.call('test-params');
+  await api.call('test-page?slug=global-slug');
 
-  return [{ slug: "test1" }, { slug: "test2" }];
+  return [{ slug: 'test1' }, { slug: 'test2' }];
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const res = await api.call(`test-page?slug=${params.slug}`);
-  const data = await res.json();
+  const data = await api.call(`test-page?slug=page-${params.slug}`);
 
-  const res1 = await api.call("test-page?slug=XX");
+  await api.call('test-page?slug=global-slug');
 
   return <div>My Post: {JSON.stringify(data)}</div>;
 }
